@@ -1,0 +1,65 @@
+#include <stdio.h>
+#define max_size 4
+int queue [max_size];
+int front =-1;
+int rear=-1;
+void insert(int value){
+    if (rear==max_size -1){
+        printf("Queue overflow! Cannot insert elements");
+    }
+    else{
+        if(front == -1){
+            front =0;
+        }
+        
+        queue[++rear]=value;
+        printf("Insert %d into queue",value);
+    }
+}
+
+void delete(){
+    if(front==-1 || front>rear){
+        printf("Queue underflow!Cannot delete ");
+    }
+    else{
+        printf("Deleted %d from the queue",queue[front]);
+        front++;
+    }
+}
+
+void display(){
+    if (front==-1 || front>rear){
+        printf("Queue is empty");
+    }
+    else{
+        printf("Queue Elements\n");
+        for(int i=front;i<=rear;i++){
+            printf("%d ",queue[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    int choice,value;
+    while(1){
+        printf("\n1.Insert");
+        printf("\n2.Delete");
+        printf("\n3.Display");
+        printf("\n4.Exit");
+        printf("\nEnter your choice:");
+        scanf("%d",&choice);
+        switch (choice){
+            case 1: printf("Enter a value to insert:");
+                    scanf("%d",&value);
+                    insert(value);
+                    break;
+            case 2: delete();
+            break;
+            case 3: display();
+            break;
+            case 4: return 0;
+            default: printf("Invalid choice! Please try again\n");
+        }
+    }
+}
